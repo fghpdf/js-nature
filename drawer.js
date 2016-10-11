@@ -1,23 +1,26 @@
 'use strict'
+
+const randomCounts = [0];
+
 function setup() {
-    var myCanvas = createCanvas(640, 480);
+    const myCanvas = createCanvas(640, 480);
     myCanvas.parent('hello');
 }
 
 function draw() {
-    // if (mouseIsPressed) {
-    //     fill(0);
-    // } else {
-    //     fill(255);
-    // }
-    // ellipse(mouseX, mouseY, 80, 80);
-    // ellipse(50, 50, 80, 80);
-    var walker = new Walker(640, 480);
-    for (let i = 0; i < 100; i++) {
-        walker.setup();
-        walker.display();
+    const width = 640;
+    const height = 480;
+    const index = Math.floor(Math.random(randomCounts.length));
+    randomCounts[index]++;
+
+    stroke('blue');
+    strokeWeight(1);
+    fill(51);
+    const w = width/randomCounts.length;
+
+    for ( let x = 0; x < randomCounts.length; x++) {
+        rect(x*w, height - randomCounts[x], w - 1, randomCounts[x])
     }
-    
 }
 
 class Walker {
